@@ -1,0 +1,134 @@
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active">Forecast</li>
+  </ol>
+</div>
+<div class="">
+	<div class="card card-default m-t-20" style="border: 0px; border-radius: 0;">
+		<div class="card-body">
+			<div class="invoice padding-50 sm-padding-10">
+				<div>
+					<div class="pull-left">
+						<h5 class="pull-left inline font-montserrat all-caps hint-text">
+							Week of <?=$this->rangeData['forecasts']['range'];?>
+						</h5><br/>
+						<a class="btn btn-sm btn-primary text-white b" href="<?=_SITEROOT_;?>forecast/purchase-order/<?=$this->rangeData['forecasts']['rangeUgly'];?>">
+							<i class="flaticon flaticon-grocery-list"></i>Purchase Order
+						</a>
+						<a class="btn btn-primary text-white go-to-range" data-range="<?=$this->rangeArray[0];?>">
+							<i class="fa fa-calendar"></i>
+							View in Calendar
+						</a>
+					</div>
+					<div class="pull-right">
+						<div class="btn-group range-buttons">
+							<a href="<?=_SITEROOT_;?>forecast/<?=$this->rangeData['previous'];?>" class="btn btn-sm btn-info hint-text">
+								<i class="flaticon flaticon-left-chevron"></i> Prev
+							</a>
+							<a href="<?=_SITEROOT_;?>forecast/<?=$this->rangeData['today'];?>" class="btn btn-sm btn-info hint-text">
+								Current Week
+							</a>
+							<a href="<?=_SITEROOT_;?>forecast/<?=$this->rangeData['next'];?>" class="btn btn-sm btn-info hint-text">
+								Next <i class="flaticon flaticon-right-chevron"></i>
+							</a>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div><br>
+				<div class="table-responsive table-invoice">
+					<table class="table m-t-50">
+						<thead>
+							<tr>
+								<th class="" width="10%">Client</th>
+								<th class="" width="30%">Orders</th>
+								<th class="" width="20%">Ingredients</th>
+								<th class="" width="10%">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php if(count($this->rangeData['forecasts']['data']) > 0 ): ?>
+							<?php foreach($this->rangeData['forecasts']['data'] as $key => $data): ?>
+							<tr>
+								<td class="">
+									<a class="block text-uppercase" href="/clients/edit/<?=$data['channelInfo'][0]['id'];?>">
+										<?=$key;?>
+									</a>
+								</td>
+								<td class="">
+									<table class="table no-margin">
+									<?php foreach($data['dates'] as $t => $dat): ?>
+										<tr><td class="no-padding no-border">	
+
+											<span class="fs-15 m-r-5 text-uppercase">
+												<!-- <i class="flaticon flaticon-calendar"></i>&nbsp; -->
+												<!-- <strong> -->
+													<?=date('d M, Y', strtotime($t));?>
+												<!-- </strong> -->
+											</span>
+										
+									   <?php foreach($dat as $t2 => $dat2): ?>
+											<span class="hint-text block m-b-0 m-t-0">
+												<!-- <i class="flaticon flaticon-clock"></i>&nbsp; -->
+												<?=$dat2['start'];?> - <?=$dat2['end'];?>
+											</span>
+											<?php foreach($dat2['recipes'] as $q => $dot): ?>
+												<span class="m-b-0 m-t-0"><?=$q;?></span>
+												<?php foreach($dot as $p => $diz): ?>
+													<div class="block m-b-5">
+														<span class="inline">
+															<?=$diz['sub_recipe_name'];?>
+														</span>
+														<span class="fs-15 bold">
+															<?=$diz['total'];?>
+														</span>
+													</div>
+												<?php endforeach; ?>
+											<?php endforeach; ?>
+											<br/>
+
+										</td>
+										<td class="no-padding no-border">
+											<?php foreach($data['dates'][$t] as $t5 => $dit): ?>
+												<?php foreach($dit['ingredients'] as $fa => $dut): ?>
+													<span><?=number_format($dut['total']);?> gms of <?=$dut['name'];?></span><br/>
+												<?php endforeach; ?>
+									   		<?php endforeach; ?>
+										</td>
+
+									   <?php endforeach; ?>
+									</tr>
+									<?php endforeach; ?>
+								   	</table>
+								</td>
+								<td>
+									<?php foreach($data['ingredients'] as $t => $dat): ?>
+										<span><?=number_format($dat['total']);?> gms of <?=$dat['name'];?></span><br/>
+									<?php endforeach; ?>
+								</td>
+								<td>
+									<a class="btn btn-danger text-white btn-block" 
+										href="/forecast/invoice/<?=$data['channelInfo'][0]['id'];?>/<?=$this->rangeData['forecasts']['rangeUgly'];?>">
+										<i class="pull-left flaticon flaticon-invoice"></i>Invoice
+									</a>
+								</td>
+							</tr>
+							<?php endforeach;?>
+						<?php else:?>
+							<tr>
+								<td class="text-center" colspan="4">
+									No orders were created on the week of <?=$this->rangePretty;?>
+									<br/>
+									<br/>
+									<a class="btn btn-primary text-white go-to-range" data-range="<?=$this->rangeArray[0];?>">
+										Create orders for this week
+									</a>
+								</td>
+							</tr>
+						<?php endif;?>
+						</tbody>
+					</table>
+				</div><br>
+			</div>
+		</div>
+	</div>
+</div>

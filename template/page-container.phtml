@@ -1,0 +1,17 @@
+<?php
+$routeHelper = new RouteHelper();
+$pageType = $routeHelper->pageType();
+if($pageType == 'admin') { ?>
+<div class="page-container ">
+  <!-- START HEADER -->
+  <?php 
+  if($this->hasHeader) { require('topnav-' . $pageType . '.phtml'); }
+  ?>
+  <!-- END HEADER -->
+  <!-- START PAGE CONTENT WRAPPER -->
+  <div class="page-content-wrapper full-height <?=$this->pagecontentclass;?>" style="height: auto!important">
+    <!-- START PAGE CONTENT -->
+    <div class="content full-height <?=$this->contentclass;?>">
+<?php } else { 
+  require('topnav-' . $pageType . '.phtml'); ?>
+<?php } ?>

@@ -1,0 +1,259 @@
+.dropdown-menu {
+	&.typeahead {
+		width: 100%;
+		padding: 0;
+		background-color: #fff;
+		border: 1px solid rgba(0, 0, 0, 0.07);
+		border-top: 0;
+		left: 0;
+	}
+}
+
+.menu-items { 
+	.icon-thumbnail {
+		> i {
+			margin-left: 0;
+		}
+	}
+}
+
+.select2-dropdown {
+	border: 1px solid #ced4da!important;
+	box-shadow: none!important;
+}
+
+.form-control {
+	border-radius: 2px;
+}
+
+.profile-dropdown {
+	a {
+		i {
+			width: 10px;
+		}
+	}
+}
+.fc-toolbar {
+	.fc-left {
+		h2 {
+			line-height: 1.5;
+		}
+	}
+}
+.l-h-1 {
+	line-height: 1!important;
+}
+.brand.inline {
+	img {
+		margin-left: 40px;
+	}
+}
+.breadcrumb>.breadcrumb-item.active {
+	margin-top: 1px;
+}
+
+.data-table-filter {
+	input[type="search"] {
+		padding: 2px 4px!important;
+		font-size: 0.8rem!important;
+		border-radius: 2px!important;
+	}
+}
+
+.select2-selection.select2-selection--single {
+	border: 1px solid rgb(206, 212, 218)!important;
+	height: 38px!important;
+	border-radius: 2px;
+	&[aria-expanded="true"] {
+		border: 1px solid #80bdff;
+	}
+	.select2-selection__rendered {
+		line-height: 33px;
+		font-size: 1rem;
+		font-weight: 400;
+		padding-left: 2px;
+	}
+	.select2-selection__arrow {
+		top: 7px;
+	}
+}
+
+.modal{
+	.alert {
+		.close {
+			right: 0;
+			top: 7px;
+		}
+	}
+}
+
+table.dataTable {
+	thead {
+		.sorting_asc::after {
+			font-family: Flaticon;
+			content: "\f102";
+		    margin-left: 10px;
+		    font-weight: bold;
+	    }
+	    .sorting_desc::after {
+			font-family: Flaticon;
+			content: "\f101";
+		    margin-left: 10px;
+    		font-weight: bold;
+		}
+	}
+	tbody {
+		tr {
+			td {
+				&.details-control {
+				    font-family: Flaticon;
+				    cursor: pointer;
+				    
+				    &:before {
+				    	content: "\f104";
+				    	font-size: 10px!important;
+				    }
+				}
+				&.name-control {
+					cursor: pointer;
+				}
+				.child-table-container {
+					margin-left: -10px;
+					margin-right: -10px;
+					background: #f2f2f2;
+					padding: 0 10px;
+				}
+			}
+			&.shown td.details-control {
+				&:before {
+			    	content: "\f101";
+				}
+			}
+		}
+	} 
+}
+
+.select2-container--default .select2-results__option[aria-disabled=true] {
+	color: #f2f2f2;
+}
+
+.dataTables_wrapper {
+	.dataTables_info {
+		padding-left: 0;
+	}
+	.dataTables_length {
+		margin-top: 10px;
+		select {
+			display: block;
+		}
+	}
+	label {
+		clear: none;
+	    font-size: 12px;
+	    color: #7a8994;
+	}
+}
+
+.data-table-filter {
+
+	label {
+		float: right;
+
+		input[type="search"] {
+			display: block;
+		    width: 100%;
+		    padding: .375rem .75rem;
+		    font-size: 1rem;
+		    font-weight: 400;
+		    line-height: 1.5;
+		    color: #495057;
+		    background-color: #fff;
+		    background-clip: padding-box;
+		    border: 1px solid #ced4da;
+		    border-radius: .25rem;
+		    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		}
+	}
+}
+
+.jconfirm-box-container {
+	
+	.jconfirm-box {
+		padding: 0px;
+
+		.jconfirm-title-c, .jconfirm-content-pane, .jconfirm-buttons{
+			padding: 10px 15px 5px;
+		}
+
+		.jconfirm-title-c {
+			
+			.jconfirm-title {
+				color: #444;
+				font-size: 1rem!important;
+				font-weight: bold;
+			}
+		}
+
+		.jconfirm-content-pane {
+			margin-bottom: 0px!important;
+
+			.jconfirm-content {
+				overflow: unset!important;
+				line-height: 1.2;
+				font-size: 12px;
+			}
+		}
+
+		.jconfirm-buttons {
+			width: 100%;
+			text-align: right;
+
+			button {
+				font-weight: 200!important;
+				text-transform: none!important;
+				opacity: 1;
+				&:hover {
+					opacity: 0.7;
+				}
+			}
+		}
+	}
+}
+
+.full-width {
+	width: 100%!important;
+}
+
+.daterangepicker { 
+	&.dropdown-menu {
+		z-index: 3001!important;
+	}
+	.daterangepicker_input {
+		display: none;
+	}
+}
+
+.filters {
+	.select2-selection.select2-selection--single {
+		height: 32px!important;
+		.select2-selection__rendered {
+		    line-height: 26px!important;
+    		font-size: 12px!important;
+		}
+		.select2-selection__arrow {
+			top: 4px!important;
+		}
+	}
+}
+
+.filters {
+	padding: 10px 15px;
+	input {
+	   font-size: 12px;
+	   border-radius: 2px;
+	}
+}
+
+.fc-day-grid-container {
+	overflow: hidden!important;
+}

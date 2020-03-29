@@ -1,0 +1,136 @@
+.select2-container {
+
+	.select2-dropdown {
+		padding: 0!important;
+
+		.select2-results {
+			margin: 0px!important;
+
+			.select2-results__option--highlighted {
+				border-radius: 0!important;
+			}
+		}
+	}
+}
+
+#searchFilters {
+	background: #fff!important;
+	padding: 10px 20px;
+	width: 100%;
+	position: fixed;
+	top: 59px;
+    border-bottom: 1px solid #dfdfdf;
+    z-index: 10;
+    background: #f2f2f2;
+    border-top: 1px solid #dfdfdf;
+
+	.select2 {
+		float: left;
+		width: 100px;
+		margin: 0 10px 0 0;
+
+		.select2-selection {
+			border-radius: 0;
+			border: 1px solid #ccc!important;
+			.select2-selection__rendered {
+				font-weight: bold!important;
+			}
+		}
+	}
+
+	.select-seperator {
+		height: 26px;
+		width: 0px;
+		border-left: 1px solid #343a406b;
+		float: left;
+		margin: 5px 10px 0 0;
+	}
+
+	.search-text {
+		height: 35px;
+		width: 130px;
+		float: left;
+		margin: 0 10px 0 0;
+		border-radius: 0;
+	}
+
+	.actors-dropdown {
+		.select2-selection {
+			border: none!important;
+			background-color: transparent;
+		}
+	}
+
+	.country-dropdown {
+		.select2-container {
+			width: 200px!important;
+		}	
+	}
+}
+
+.pac-container {
+	z-index: 100000000;
+}
+
+.searchContainer {
+	margin-top: 90px;
+}
+
+.member-row {
+	h6 {
+		margin: 0;
+		font-weight: bold;
+	}
+	p {
+		font-size: 14px;
+		line-height: 1;
+		margin: 0;
+		color: rgba(0,0,0,.9);
+	}
+}
+
+@media (max-width: 800px) {
+	#searchFilters {
+	    height: 41px;
+	    padding-left: 0;
+	    padding-top: 12px;
+	    padding-right: 0;
+	    top: 47px;
+	    overflow-y: hidden;
+	    box-sizing: content-box;
+
+		.container {
+			width: 611px;
+			display: inline-block;
+			max-width: none;
+		}
+
+		&::-webkit-scrollbar {
+		    width: 0px;
+		    background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+		    background: transparent;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+
+	.search-gap {
+		text-align: center;
+
+		.button-connect {
+			margin-top: 10px;
+			float: none!important;
+		}
+
+		.thumbnail-wrapper {
+			float: none;
+		}
+	}
+	.dataTables_paginate.paging_bootstrap.pagination {
+		text-align: center;
+	}
+}

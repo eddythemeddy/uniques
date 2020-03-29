@@ -1,0 +1,131 @@
+<script>
+var recipeSub = <?=json_encode($this->subRecipesIngredients);?>;
+</script>
+
+<div class="container p-t-10 forecast-selector-contianer">
+  <select class="select-2" id="channel-picker">
+      <option value="">Select Channel</option>
+    <?php foreach($this->channels as $channel): ?>
+      <option value="<?=$channel['id'];?>" data-name="<?=$channel['name'];?>"><?=$channel['name'];?></option>
+    <?php endforeach;?>
+  </select>  
+</div>
+
+<div class="container p-t-10 forecast-main-container">
+
+  <div class="table-subrecipes-container">
+      
+    <table class="table padding-20 table-subrecipes">
+      <tr class="first-row">
+        <td class="padding-10 text-center">
+          <button class="bold btn btn-block btn-primary save-forecast">Save</button>
+        </td>
+      </tr>
+      <?php foreach(array_keys($this->subRecipes) as $sub): ?>
+      <tr class="parent-recipe-rows">
+        <td class="padding-20 bold">
+          <a href="<?=_SITEROOT_;?>recipes/edit/<?=$this->subRecipes[$sub][0]['recipe_id'];?>"
+             target="_blank">
+            <span><?=$sub;?></span>
+          </a>
+        </td>
+      </tr>
+        <?php foreach($this->subRecipes[$sub] as $subRecipes): ?>
+
+        <tr class="sub-recipe-rows">
+          <td class="padding-10 p-l-20">
+              <a href="<?=_SITEROOT_;?>recipes/edit-sub/<?=$this->subRecipes[$sub][0]['id'];?>"
+                 target="_blank">
+                <?=$subRecipes['container'] . ' ' . $subRecipes['containerSize'];?>
+              </a>
+          </td>
+        </tr>
+
+        <?php endforeach;?>
+
+      <?php endforeach;?>
+    </table>
+
+  </div>
+    
+  <div class="table-responsive channels-table-container">
+
+  
+    <table class="table padding-20 channels-table">
+      <tr class="channels-table-head" data-sub-recipe-row="<?=$subRecipes['id'];?>">
+        
+      </tr>
+      <?php foreach(array_keys($this->subRecipes) as $sub): ?>
+      <tr class="channel-table-spacer">
+        <td class="padding-20 bold first"></td>
+      </tr>
+        <?php foreach($this->subRecipes[$sub] as $subRecipes): ?>
+          <tr class="channels-sub-recipes" data-sub-recipe-row="<?=$subRecipes['id'];?>">
+          </tr>
+        <?php endforeach;?>
+      <?php endforeach;?>
+
+    </table>
+
+  </div>
+
+
+
+  <div style=" float:left; width:10%; margin-right:-21px;">
+      
+    <table class="table padding-20" style="width:auto!important;">
+      <tr>
+        <td class="padding-10 text-center" style="background-color: #f2f2f2; height: 58px; vertical-align: middle; background-color: #f6f9fa;">
+          
+        </td>
+      </tr>
+      <?php foreach(array_keys($this->subRecipes) as $key => $sub): ?>
+      <tr>
+        <td class="padding-20 bold" style="background-color: #f6f9fa; height:60px; border-bottom: 1px solid #ccc;">
+          <?=($key == 0 ? 'Totals' : '');?>
+        </td>
+      </tr>
+        <?php foreach($this->subRecipes[$sub] as $subRecipes): ?>
+
+        <tr style="background-color: #f2f2f2;">
+          <td class="padding-10 p-l-20" style="font-weight: bold; text-align: center; background-color: #f6f9fa; border: 1px solid #ccc; height: 40px;" data-sub-recipe-total="<?=$subRecipes['id'];?>">
+            0
+          </td>
+        </tr>
+
+        <?php endforeach;?>
+
+      <?php endforeach;?>
+    </table>
+
+  </div>  
+
+</div>
+
+<div id="final-paper">
+
+  <h3 class="first">Inventory Sum Up</h3>
+  <table class="inline table ingredient-table block">
+  	<thead>
+	  	<tr>
+	  		<th style="width: 50%;">Ingredient</th>
+	  		<th style="width: 50%;">Total Amount</th>
+	  	</tr>
+  	</thead>
+  	<tbody>
+  	</tbody>
+  </table>
+
+  <h3 class="first">Recipes Sum Up</h3>
+  <table class="inline table ingredient-table block">
+  	<thead>
+	  	<tr>
+	  		<th style="width: 50%;">Recipe</th>
+	  		<th style="width: 50%;">Total Amount</th>
+	  	</tr>
+  	</thead>
+  	<tbody>
+  	</tbody>
+  </table>
+
+</div>

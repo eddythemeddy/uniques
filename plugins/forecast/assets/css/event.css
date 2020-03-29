@@ -1,0 +1,41 @@
+.amount.minus, .amount.plus,.amount-actual.minus, .amount-actual.plus {
+	width: 20%;
+	border: 0px;
+	background: #ccc;
+	height: 24px;
+	width: 22px;
+}
+.unique-total-amount,.unique-total-amount-actual {
+	padding-top: 3px;
+	width: 50px;
+	margin: 0px;
+	border: 0;
+	background: #f2f2f2;
+	height: 24px;
+}
+.remove-forecast-recipe {
+	line-height: 0.1;
+	cursor: pointer;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+#forecast-recipes th {
+	background-color: #f2f2f2;
+}
+
+.before-dollar:before {
+	content: '$';
+}
+
+.after-percent:after {
+	content: '%';
+}

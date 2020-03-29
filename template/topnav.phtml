@@ -1,0 +1,7 @@
+<?php
+$routeHelper = new RouteHelper();
+$pageType = $routeHelper->pageType();
+if($this->hasHeader) {
+	require('topnav-' . $pageType . '.phtml');
+}
+?>

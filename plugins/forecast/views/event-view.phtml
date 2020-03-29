@@ -1,0 +1,151 @@
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/events/">Events</a></li>
+    <li class="breadcrumb-item active">Event Details</li>
+  </ol>
+</div>
+<div class="container-fluid m-t-20">  
+	
+	<div class="row">
+		<div class="col-md-12 m-b-20">
+			<div class="full-width">
+				<h4 class="m-b-0 inline pull-left">
+					Order #<span class="semi-bold inline"><?=$this->eventId;?></span>
+				</h4>
+				<span class="inline m-t-10 pull-right">
+					<?=$this->event['paidPretty'];?>
+				</span>
+			</div>
+		</div>
+	</div> <!-- end row -->
+
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="card">
+				<div class="card-header p-t-0 p-b-0">
+					<h5 class="text-primary pull-left fs-12 bold"><i class="fa fa-info-circle"></i>&nbsp;Order Details</h5>
+				</div>
+				<div class="card-body">
+				<hr class="no-margin" />
+					<div class="p-l-0 p-r-0 p-t-0">
+							<h5 class="text-success m-b-0"><?=$this->event['client'];?></h5>
+							<p class="l-h-1"><?=$this->model->prettifyAddress($this->event['clientAddress']);?></p>
+							<label class="hint-text small m-b-0">Date</label>
+							<p class="inline-block l-h-1 m-t-0">
+								<?=$this->event['datePretty'];?>   	
+							</p>
+							<label class="hint-text small m-b-0">Time</label>
+							<p class="inline-block l-h-1 m-t-0">
+							    <?=$this->event['start_time'];?> -
+							    <?=$this->event['end_time'];?> 	
+							</p>
+							<label class="hint-text small m-b-0">Status</label>
+							<div class="m-b-10 block">
+								<?=$this->model->eventStatusPretty($this->event['event_status']);?>
+							</div>
+							<label class="hint-text small m-b-0">Event Type</label>
+							<div class="m-b-20 block">
+								<?=$this->event['eventType'];?>
+							</div>
+							<hr/>
+							<h5 class="m-t-0 m-b-0 pull-left inline">
+								<label class="hint-text f-10 m-b-0 block">Projected</label>
+								<span id="net-total" class="before-dollar"><?=number_format($this->event['total'], 2);?></span>
+							</h5>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end col -->
+		<div class="col-sm-9">
+			<div class="card">  
+				<div class="card-header p-t-0 p-b-0">
+					<h5 class="text-primary pull-left fs-12 bold"><i class="fa fa-list"></i>&nbsp;Orders (<?=count($this->event['recipes']);?>)</h5>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-hover no-margin" id="forecast-recipes">
+						<thead>
+							<th class="text-black" style="width:10px"></th>
+							<th class="text-black" style="width:20%;">Recipe</th>
+							<th class="text-center text-black">Price</th>
+							<th class="text-center text-black">Projected</th>
+							<th class="text-center text-black">Total</th>
+						</thead>
+						<tbody>
+							<?php foreach($this->event['recipes'] as $recipe): ?>
+							<tr data-sub-recipe-id="<?=$recipe['sub_recipe_id'];?>" 
+								data-sub-recipe-price="<?=$recipe['instantaneous_subrecipe_price'];?>" 
+								data-forecast-recipe-id="<?=$recipe['forecast_recipe_id'];?>">
+								<td class="v-align-middle p-t-10 p-b-10 p-l-20 p-r-20">
+									<a class="remove-forecast-recipe tip" data-toggle="tooltip" data-original-title="Remove this recipe"><i class="fa fa-trash"></i></a>
+								</td>
+								<td class="v-align-middle p-t-10 p-b-10">
+									<span class="tip" data-toggle="tooltip" data-original-title="<?=$recipe['sub_recipe_name'];?> <?=$recipe['recipe_name'];?>"><?=$recipe['sub_recipe_name'];?> <?=$recipe['recipe_name'];?></span>
+								</td>
+								<td class="v-align-middle text-center text-primary p-t-10 p-b-10">
+									$<?=number_format($recipe['instantaneous_subrecipe_price'],2);?>
+								</td>
+								<td class="v-align-middle text-center text-center p-t-10 p-b-10">
+									<div style="margin: 0 auto;width: auto;display: inline-block;">
+										<?php if($this->event['paid'] == 'unresolved') : ?>
+										<button class="pull-left amount minus">-</button>
+										<?php endif;?>
+										
+										<?php if($this->event['paid'] == 'unresolved') : ?>
+										<input type="number" value="<?=$recipe['total'];?>" class="text-center pull-left unique-total-amount">
+										<?php else:?>
+											<?=$recipe['total_actual'];?>
+										<?php endif;?>
+
+										<?php if($this->event['paid'] == 'unresolved') : ?>
+										<button class="pull-left amount plus">+</button>
+										<?php endif;?>
+									</div>
+								</td>
+								<td class="v-align-middle p-t-10 p-b-10 text-center">
+									<span class="bold fs-15 net-price">
+										$<?=number_format($recipe['net_total'],2);?>
+									</span>
+								</td>
+				
+							</tr>
+							<?php endforeach;?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="p-r-0 p-b-20 pull-left" style="width: 30%">
+				<select data-init-plugin="select2" data-placeholder="Add Recipe..." style="width:100%;" id="input-recipe">
+		        <?php foreach($this->subRecipes as $key => $sub): ?>
+		          <option value="">Add Recipe..</option>
+		          <optgroup label="<?=$key;?>"><?=$key;?></optgroup>
+		          <?php foreach($sub as $key2 => $sub2): ?>
+		            <option value="<?=$sub2['id'];?>" 
+		              data-recipe-id="<?=$sub2['recipe_id'];?>" 
+		              data-recipe-name="<?=$key;?>" 
+		              data-recipe-sub-price="<?=$sub2['price'];?>" 
+		              data-recipe-sub-name="<?=$sub2['containerSize'] . ' ' . $sub2['container'];?>">
+		              <small style="font-size: 10px;">
+		                <?=$key . ' ' . $sub2['containerSize'] . ' ' . $sub2['container'];?>
+		              </small>
+		            </option>
+		          <?php endforeach;?>
+		          
+		        <?php endforeach; ?>
+		      </select>
+			</div>
+			<div class="btn-groups pull-right">
+				<a href="<?=_SITEROOT_;?>sales/resolve/<?=$this->eventId;?>" class="btn btn-outline btn-danger btn-sm <?php if($this->event['paid'] == 'resolved') : ?> disabled <?php endif;?> text-white">
+					<!-- <i class="flaticon flaticon-piggy-bank"></i> -->Close this Sale
+				</a>
+			
+			</div>
+		</div> <!-- end col -->
+	</div> <!-- end row -->
+
+
+
+
+</div>

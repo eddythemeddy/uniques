@@ -1,0 +1,7 @@
+<?php
+$routeHelper = new RouteHelper();
+$pageType = $routeHelper->pageType();
+if($pageType == 'admin') {
+	require('sidebar-' . $pageType . '.phtml');
+}
+?>

@@ -1,0 +1,68 @@
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active">Weekly Events</li>
+  </ol>
+</div>
+<div class="container-fluid">
+	<div class="pull-left p-l-20">
+		<h5>Week of <span class="semi-bold"><?=$this->rangeData['range'];?></span></h5>
+		
+	</div>
+	<div class="pull-right p-r-20">
+		<div class="pull-right range-buttons hidden full-width" style="margin-top: 12px;">
+			<a class="btn btn-sm btn-info text-white pull-left go-to-range" data-range="<?=$this->rangeArray[0];?>">
+				Calendar View
+			</a>
+			<a class="btn btn-sm btn-info text-white pull-left go-to-range" href="<?=_SITEROOT_;?>forecast/purchase-order/<?=$this->rangeData['rangeUgly'];?>">
+				Purchase Order
+			</a>
+			<a class="btn btn-sm btn-info text-white pull-left go-to-range" href="<?=_SITEROOT_;?>forecast/prep-sheet/<?=$this->rangeData['rangeUgly'];?>">
+				Prep Sheet
+			</a>
+			<div class="btn-group pull-right inline-block m-l-10">
+				<a href="<?=_SITEROOT_;?>forecast/<?=$this->rangeData['previous'];?>" class="btn btn-sm btn-info">
+					<i class="flaticon flaticon-left-chevron"></i>
+				</a>
+				<a href="<?=_SITEROOT_;?>forecast/<?=$this->rangeData['next'];?>" class="btn btn-sm btn-info">
+					<i class="flaticon flaticon-right-chevron"></i>
+				</a>
+			</div>
+			<a href="<?=_SITEROOT_;?>forecast/" class="btn btn-sm btn-info pull-right m-r-20">
+				today
+			</a>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div><br>
+<div class="container-fluid container-fixed-lg bg-white">
+	<div class="card card-transparent">
+		<div class="card-header">
+			<div class="card-title">
+				<!-- <h6 class="font-montserrat data-tables-header inline"></h6>
+				<a href="/forecast/events/add" class="btn btn-primary btn-cons pull-right btn-sm">+ Add Event</a> -->
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="table-responsive">
+				<div class="dataTables_wrapper no-footer" id="basicTable_wrapper">
+					<table class="table full-width" id="forecastTable" role="grid">
+						<thead>
+							<tr role="row">
+								<th>Event Id</th>
+								<th>Date</th>
+								<th>Client</th>
+								<th>Event Type</th>
+								<th>Status</th>
+								<th>Total Recipes</th>
+								<th>Net Total</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

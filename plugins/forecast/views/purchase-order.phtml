@@ -1,0 +1,142 @@
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/forecast/">Forecast</a></li>
+    <li class="breadcrumb-item active">Purchase order</li>
+  </ol>
+</div>
+<nav class="navbar navbar-default bg-master-lighter sm-padding-10 full-width p-t-0 p-b-0" role="navigation">
+	<div class="container-fluid full-width">
+		<div class="navbar-header text-center">
+			<button class="navbar-toggle collapsed btn btn-link no-padding" data-target="#sub-nav" data-toggle="collapse" type="button"><i class="pg pg-more v-align-middle"></i></button>
+		</div>
+		<div class="collapse navbar-collapse" id="sub-nav">
+			<div class="row">
+				<div class="col-sm-4">
+					<ul class="navbar-nav col-sm-12 col-md-12 col-lg-5">
+						<!-- <li class="nav-item dropdown">
+							<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="http://example.com" id="navbarDropdownMenuLink"><i class="fa fa-file-text m-r-10"></i> Squarespace</a>
+							<div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+								<a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+								<div class="divider"></div><a class="dropdown-item" href="#">Separated link</a>
+								<div class="divider"></div><a class="dropdown-item" href="#">One more separated link</a>
+							</div>
+						</li> -->
+						<!-- <li class="nav-item text-center">
+							<a data-original-title="Print" data-placement="bottom" data-toggle="tooltip" href="#" onclick="window.print()" title=""><i class="fa fa-print"></i></a>
+						</li> -->
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="navbar-nav d-flex flex-row">
+						<!-- <li class="nav-item text-center">
+							<a href="#">Open</a>
+						</li> -->
+						<!-- <li class="nav-item text-center">
+							<a data-original-title="Print" data-placement="bottom" data-toggle="tooltip" href="#" onclick="window.print()" title=""><i class="fa fa-print"></i></a>
+						</li> -->
+						<!-- <li class="nav-item text-center">
+							<a data-original-title="Download" data-placement="bottom" data-toggle="tooltip" href="#" title=""><i class="fa fa-download"></i></a>
+						</li> -->
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="navbar-nav d-flex flex-row justify-content-sm-end">
+						<li class="nav-item">
+							<a class="p-r-10" href="#"><img alt="" class="icon-pdf" data-src="assets/img/invoice/pdf.png" data-src-retina="assets/img/invoice/pdf2x.png" height="25" src="assets/img/invoice/pdf.png" width="25"></a>
+						</li>
+						<li class="nav-item">
+							<a class="p-r-10" href="#"><img alt="" class="icon-image" data-src="assets/img/invoice/image.png" data-src-retina="assets/img/invoice/image2x.png" height="25" src="assets/img/invoice/image.png" width="25"></a>
+						</li>
+						<li class="nav-item">
+							<a class="p-r-10" href="#"><img alt="" class="icon-doc" data-src="assets/img/invoice/doc.png" data-src-retina="assets/img/invoice/doc2x.png" height="25" src="assets/img/invoice/doc.png" width="25"></a>
+						</li>
+						<li class="nav-item text-center">
+							<a data-original-title="Print" data-placement="bottom" data-toggle="tooltip" href="#" onclick="window.print()" title=""><i class="fa fa-print"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="p-r-10" href="#" onclick="$.Pages.setFullScreen(document.querySelector('html'));"><i class="fa fa-expand"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid container-fixed-lg">
+	<div class="card card-default m-t-20">
+		<div class="card-body">
+			<div class="invoice padding-50 sm-padding-10">
+				<div>
+					<div class="pull-left">
+						<img alt="" class="invoice-logo" data-src="assets/img/invoice/squarespace.png" data-src-retina="assets/img/invoice/squarespace2x.png" height="47" src="assets/img/invoice/squarespace.png" width="235">
+						<address class="m-t-10">
+							Week of <?=$this->pruchaseOrder['range'];?>
+						</address>
+					</div>
+					<div class="pull-right sm-m-t-20">
+						<h2 class="font-montserrat all-caps hint-text">Purchase Order</h2>
+					</div>
+					<div class="clearfix"></div>
+				</div><br>
+				<br>
+				<div class="table-responsive table-invoice">
+					<table class="table m-t-50">
+						<thead>
+							<tr>
+								<th class="">Ingredient</th>
+								<th class="text-center">Rate</th>
+								<th class="text-center">Amount (gms)</th>
+								<th class="text-center">Total</th>
+							</tr>
+						</thead>
+						<tbody>
+					<?php foreach($this->pruchaseOrder['data'] as $key => $val): ?>
+							<tr>
+								<td class="">
+									<p class="font-montserrat all-caps small no-margin hint-text bold m-b-0">
+										<?=$val['name'];?>
+									</p>
+								</td>
+								<td class="text-center">
+									<p class="font-montserrat all-caps small no-margin hint-text bold m-b-0">
+										$<?=$val['rate'];?>
+									</p>
+								</td>
+								<td class="text-center">
+									<p class="font-montserrat all-caps small no-margin hint-text bold m-b-0">
+										<?=number_format($val['totalIngs'], 2);?>
+									</p>
+								</td>
+								<td class="text-center">
+									<p class="font-montserrat all-caps small no-margin hint-text bold m-b-0">
+										$<?=$val['totalPrice'];?>
+									</p>
+								</td>
+							</tr>
+						
+					<?php endforeach;?>
+						</tbody>
+					</table>
+				</div><br>
+				<div>
+					<img alt="" class="invoice-signature" data-src="assets/img/invoice/signature.png" data-src-retina="assets/img/invoice/signature2x.png" height="58" src="assets/img/invoice/signature2x.png" width="150">
+				</div><br>
+				<br>
+				<div class="p-l-15 p-r-15">
+					<div class="row b-a b-grey">
+						<div class="col-md-2 p-l-15 sm-p-t-15 clearfix sm-p-b-15 d-flex flex-column justify-content-center">
+							
+						</div>
+						<div class="col-md-5 clearfix sm-p-b-15 d-flex flex-column justify-content-center">
+						</div>
+						<div class="col-md-5 text-right bg-master-darker col-sm-height padding-15 d-flex flex-column justify-content-center align-items-end">
+							<h5 class="font-montserrat all-caps small no-margin hint-text text-white bold">Total</h5>
+							<h1 class="no-margin text-white" id="total" data-total="<?=$this->pruchaseOrder['total'];?>">$<?=number_format($this->pruchaseOrder['totalExpenditure'],2);?></h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

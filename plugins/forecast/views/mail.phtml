@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active">Forecast</li>
+  </ol>
+</div>
+<div class="container-xs-height full-height error-page">
+  <div class="row-xs-height">
+    <div class="col-xs-height col-middle">
+      <div class="col-md-12">
+        <h2 class="semi-bold text-center">Email</h2>
+        <div class="error-container-innner">
+          <form action="<?=$_SERVER['REQUEST_URI'];?>" method="get" autocomplete="off">
+            <div class="form-group">
+              <label>To</label>
+              <input type="email" id="to" name="to" required="" placeholder="Email" autocomplete="off" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="text" id="subject" name="subject" required="" placeholder="Subject" autocomplete="off" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea name="message" class="form-control"></textarea>
+            </div>
+            <div class="form-group xs-pt-10">
+              <button type="submit" class="btn btn-block btn-primary btn-xl">Sign Up</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
