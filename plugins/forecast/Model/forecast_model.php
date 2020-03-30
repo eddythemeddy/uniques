@@ -1198,52 +1198,59 @@ class Forecast_Model extends Model {
 		    			array_push($weekDates, $array);
 					}
 				}
-
-				// // All events coming from Google Calendar
-				// if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-				// 	$client = new Google_Client();
-				// 	$client->addScope(Google_Service_Calendar::CALENDAR);
-				// 	$guzzleClient = new \GuzzleHttp\Client(array('curl' => array(CURLOPT_SSL_VERIFYPEER => false)));
-				// 	$client->setHttpClient($guzzleClient);
-				// 	$this->client = $client;
-				// 	$this->client->setAccessToken($_SESSION['access_token']);
-				// 	$service = new Google_Service_Calendar($this->client);
-
-				// 	$calendarId = 'primary';
-					
-				// 	$optParams['timeMin'] = date("c", strtotime(date('2013-07-02 H:i:s')));
-				// 	$optParams['timeMax'] = date("c", strtotime(date('2013-07-02 H:i:s')));
-				// 	$results = $service->events->listEvents($calendarId, $optParams);
-
-				// 	foreach ($results->getItems() as $event) {
-				// 		$gATitle = $event->getSummary();
-				// 		$gaStart = date("H:i", strtotime($event->getStart()->dateTime));
-				// 		$gaEnd   = date("H:i", strtotime($event->getEnd()->dateTime));
-
-				// 		$array = [
-				// 			'id'                  => rand().rand(),
-				// 			'day'                 => $date->format('d'),
-				// 			'channel'             => null,
-				// 			'backgroundColor'     => count($forecastRecipes) ? $eventBgColor : self::DEFAULT_COLOR_PAST_BG,
-				// 			'borderColor'     	  => count($forecastRecipes) ? $eventBgColor : self::DEFAULT_COLOR_PAST_BG,
-				// 			'textColor'       	  => count($forecastRecipes) ? $eventTextColor : self::DEFAULT_COLOR_TEXT,
-				// 			'title'               => $event->getSummary(),
-				// 			'unique_id'           => $added['id'],
-				// 			'start'               => $dateOfEvent . 'T' . $gaStart,
-				// 			'end'                 => $dateOfEvent . 'T' . $gaEnd,
-				// 			'editable'            => $editable,
-				// 			'updated_from_repeat' => 0,
-				// 			'other'               => [
-				// 			]
-				// 		];
-				// 	}
-
-				// }
-				// // $gCal->calByDate($dateOfEvent);
 		    }
 		}
 
 		return $weekDates;
+	}
+
+	public function loadUpGCEvents() {
+		// // All events coming from Google Calendar
+		$start   = $this->eqDb->escape($_POST['start']);
+		$end     = $this->eqDb->escape($_POST['end']);
+		$events = [];
+		if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+			$client = new Google_Client();
+			$client->addScope(Google_Service_Calendar::CALENDAR);
+			$guzzleClient = new \GuzzleHttp\Client(array('curl' => array(CURLOPT_SSL_VERIFYPEER => false)));
+			$client->setHttpClient($guzzleClient);
+			$this->client = $client;
+			$this->client->setAccessToken($_SESSION['access_token']);
+			$service = new Google_Service_Calendar($this->client);
+
+			$calendarId = 'primary';
+			
+			$optParams['timeMin'] = date("c", strtotime(date($start . ' H:i:s')));
+			$optParams['timeMax'] = date("c", strtotime(date($end . ' H:i:s')));
+			$results = $service->events->listEvents($calendarId, $optParams);
+			
+			foreach ($results->getItems() as $event) {
+				
+				$gATitle = $event->getSummary();
+				$dateOfEvent = date("Y-m-d", strtotime($event->getStart()->dateTime));
+				$gaStart = date("H:i", strtotime($event->getStart()->dateTime));
+				$gaEnd   = date("H:i", strtotime($event->getEnd()->dateTime));
+
+				array_push($events, [
+					'id'                  => rand().rand(),
+					'day'                 => date("d",strtotime($event->getStart()->dateTime)),
+					'event'               => $event,
+					'backgroundColor'     => "orange",
+					'borderColor'     	  => self::DEFAULT_COLOR_PAST_BG,
+					'textColor'       	  => self::DEFAULT_COLOR_TEXT,
+					'title'               => "Google Calendar: " . $event->getSummary(),
+					'unique_id'           => rand().rand(),
+					'start'               => $dateOfEvent . 'T' . $gaStart,
+					'end'                 => $dateOfEvent . 'T' . $gaEnd,
+					'updated_from_repeat' => 0,
+					'other'               => []
+				]);
+			}
+
+		}
+		// $gCal->calByDate($dateOfEvent);
+
+		return $events;
 	}
 
 	public function loadSubRecipes() {

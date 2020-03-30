@@ -29,23 +29,28 @@ class gCalendarControllerHelper
      */
     public function index()
     {
+        if ($this->client->isAccessTokenExpired()) {
+            header('Location: /forecast/calendar-callback?oauth=1');
+            exit;
+        }
+
+        // var_dump($_SESSION);
         if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+            echo 'hi';
             $this->client->setAccessToken($_SESSION['access_token']);
             $service = new Google_Service_Calendar($this->client);
 
             $calendarId = 'primary';
 
             $results = $service->events->listEvents($calendarId);
+            
 
-            // // var_dump($results->getItems());die;
-            // foreach ($results->getItems() as $event) {
-            //     echo '<strong>' .$event->getSummary() . '</strong><br>(' .date("d, M Y H:i", strtotime($event->getStart()->dateTime)) . ' - ' .date("H:i", strtotime($event->getEnd()->dateTime)) . ')<br/>' . $event->getDescription() . '<br/><hr/>';
-            // }
+            // var_dump($results->getItems());die;
+            foreach ($results->getItems() as $event) {
+                echo '<strong>' .$event->getSummary() . '</strong><br>(' .date("d, M Y H:i", strtotime($event->getStart()->dateTime)) . ' - ' .date("H:i", strtotime($event->getEnd()->dateTime)) . ')<br/>' . $event->getDescription() . '<br/><hr/>';
+            }
 
-        } else {
-            // header("Location: /forecast/calendar-callback?oauth=1");
         }
-
     }
 
     public function oauth()

@@ -50,7 +50,7 @@ class Forecast extends Controller {
             exit;
         }
 
-        $this->bodyClass        = 'fixed-header';
+        $this->bodyClass = 'fixed-header';
         $this->loadPage();
         $this->render('list');
         $this->loadFooter();
@@ -119,6 +119,11 @@ class Forecast extends Controller {
 
         header("Access-Control-Allow-Origin: *");
 
+        if (!isset($_SESSION['access_token']) && !$_SESSION['access_token']) {
+            header('Location: /forecast/calendar-callback?oauth=1');
+            exit;
+        }
+
         if(!empty($_POST['loadForecasts'])) {
             echo json_encode($this->model->loadForecasts());
             exit;
@@ -143,6 +148,11 @@ class Forecast extends Controller {
             echo json_encode($this->model->deleteEvent());
             exit;
         } 
+
+        if(!empty($_POST['loadGaEvents'])) {
+            echo json_encode($this->model->loadUpGCEvents());
+            exit;
+        }
 
         $this->channels         = $this->model->loadChannels();
         $this->subRecipes       = $this->model->loadSubRecipes();

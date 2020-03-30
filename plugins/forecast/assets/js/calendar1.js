@@ -413,6 +413,7 @@
 	const _loadevents = (start, end) => {
 
 		let channel = $('#channelFilterDD').val();
+		_calDom.fullCalendar('removeEvents')
 		
 		$.ajax({
             dataType: "json",
@@ -424,13 +425,29 @@
                 end: end
             },
             success: (data) => {
-                $.when(
-                	_calDom.fullCalendar('removeEvents')
-                ).done(() => {
-                	_calDom.fullCalendar('renderEvents', data);
-                }).then(() => {
-					new GoogleCalendar();
-				});
+                _calDom.fullCalendar('renderEvents', data);
+            }
+		});
+		
+		// alert();
+		$.ajax({
+            dataType: "json",
+            type: "POST",
+            data: { 
+                loadGaEvents: 1,
+                channel: channel,
+                start: start,
+                end: end
+            },
+            success: (data) => {
+				_calDom.fullCalendar('addEventSource', data);
+                // $.when(
+                // 	_calDom.fullCalendar('removeEvents')
+                // ).done(() => {
+                // 	_calDom.fullCalendar('renderEvents', data);
+                // }).then(() => {
+				// 	new GoogleCalendar();
+				// });
             }
         });
 	};
