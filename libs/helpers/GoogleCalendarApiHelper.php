@@ -54,7 +54,7 @@ class gCalendarControllerHelper
 
     public function oauth()
     {
-        $redirect_uri = 'https://tinyurl.com/r9rw2sy';
+        $redirect_uri = 'https://bit.ly/2xA9uN2';
         $this->client->setRedirectUri($redirect_uri);
         if (!isset($_GET['code'])) {
             $auth_url = $this->client->createAuthUrl();

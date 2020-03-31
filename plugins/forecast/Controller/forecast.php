@@ -27,15 +27,7 @@ class Forecast extends Controller {
 
     public function mail() {
 
-        if(isset($_GET['to'])) {
-            $this->model->sendMail();
-            die;
-        }
-
-        $this->bodyClass = 'fixed-header';
-        $this->loadPage();
-        $this->render('mail');
-        $this->loadFooter();
+        $this->model->sendMail();
     }
 
     public function index($dateRange = null) {
@@ -119,7 +111,7 @@ class Forecast extends Controller {
 
         header("Access-Control-Allow-Origin: *");
 
-        if (!isset($_SESSION['access_token']) && !$_SESSION['access_token']) {
+        if (!empty($_SESSION['access_token'])) {
             $this->gcal = new gCalendarControllerHelper();
             $this->gcal->oauth();
             exit;
