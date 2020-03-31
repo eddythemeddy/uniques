@@ -120,7 +120,8 @@ class Forecast extends Controller {
         header("Access-Control-Allow-Origin: *");
 
         if (!isset($_SESSION['access_token']) && !$_SESSION['access_token']) {
-            header('Location: /forecast/calendar-callback?oauth=1');
+            $this->gcal = new gCalendarControllerHelper();
+            $this->gcal->oauth();
             exit;
         }
 

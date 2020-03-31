@@ -36,7 +36,6 @@ class gCalendarControllerHelper
 
         // var_dump($_SESSION);
         if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-            echo 'hi';
             $this->client->setAccessToken($_SESSION['access_token']);
             $service = new Google_Service_Calendar($this->client);
 
@@ -55,19 +54,16 @@ class gCalendarControllerHelper
 
     public function oauth()
     {
-        session_start();
-
-        $redirect_uri = 'http://localhost/forecast/calendar-callback?oauth=1';
+        $redirect_uri = 'https://tinyurl.com/r9rw2sy';
         $this->client->setRedirectUri($redirect_uri);
         if (!isset($_GET['code'])) {
             $auth_url = $this->client->createAuthUrl();
             $filtered_url = filter_var($auth_url, FILTER_SANITIZE_URL);
             header("Location: " .  $filtered_url);
-
         } else {
             $this->client->authenticate($_GET['code']);
             $_SESSION['access_token'] = $this->client->getAccessToken();
-            header("Location: /forecast/calendar?index=1");
+            header("Location: " . $redirect_uri);
         }
     }
 
