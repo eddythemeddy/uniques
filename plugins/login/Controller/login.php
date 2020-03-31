@@ -9,7 +9,7 @@ class Login extends Controller {
   public function index() {
 
     if (isset($_SESSION['scouty_email'])) {
-      header('location: ' . _SITEROOT_ . 'feed');
+      header('location: ' . _SITEROOT_ . 'forecast/calendar');
       exit;
     }
 

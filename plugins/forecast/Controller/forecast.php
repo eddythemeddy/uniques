@@ -7,7 +7,7 @@ class Forecast extends Controller {
     function __construct() {
 
         if (empty($_SESSION['scouty_email'])) {
-            header('location: ' . _SITEROOT_);
+            header('location: ' . _SITEROOT_ . 'login');
             exit;
         }
     }
