@@ -29,7 +29,7 @@ class gCalendarControllerHelper
      */
     public function index()
     {
-        if ($this->client->isAccessTokenExpired()) {
+        if (!isset($_SESSION['access_token']) && !$_SESSION['access_token']) {
             header('Location: /forecast/calendar-callback?oauth=1');
             exit;
         }
@@ -67,7 +67,7 @@ class gCalendarControllerHelper
         } else {
             $this->client->authenticate($_GET['code']);
             $_SESSION['access_token'] = $this->client->getAccessToken();
-            header("Location: /forecast/calendar-callback?index=1");
+            header("Location: /forecast/calendar?index=1");
         }
     }
 
@@ -162,7 +162,6 @@ class gCalendarControllerHelper
      */
     public function update(Request $request, $eventId)
     {
-        session_start();
         if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             $this->client->setAccessToken($_SESSION['access_token']);
             $service = new Google_Service_Calendar($this->client);
