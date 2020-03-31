@@ -5,5 +5,4 @@ assets/public/css/style.css
 assets/dist/*/
 uploads/
 .DS_Store
-credentials.json
 composer.lock
