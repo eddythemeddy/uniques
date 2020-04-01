@@ -23,7 +23,7 @@ class Forecast_Model extends Model {
 		$to =      $this->eqDb->escape($_POST['to']);
 		$subject = $this->eqDb->escape($_POST['subject']);
 		$message = $this->eqDb->escape($_POST['message']);
-		// $mail = new PHPMailer;
+		$mail = new PHPMailer;
 		// the message
 		$msg = "First line of text\nSecond line of text<img src=\"https://lh3.googleusercontent.com/-e640AMqonrk/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJMe97GoInxVx21WTiTO9rR0NPXjig/photo.jpg?sz=46\">";
 		// use wordwrap() if lines are longer than 70 characters
