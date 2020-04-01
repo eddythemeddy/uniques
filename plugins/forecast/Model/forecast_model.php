@@ -23,7 +23,7 @@ class Forecast_Model extends Model {
 		$to =      $this->eqDb->escape($_POST['to']);
 		$subject = $this->eqDb->escape($_POST['subject']);
 		$message = $this->eqDb->escape($_POST['message']);
-		$mail = new PHPMailer;
+		// $mail = new PHPMailer;
 		// the message
 		$msg = "First line of text\nSecond line of text<img src=\"https://lh3.googleusercontent.com/-e640AMqonrk/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJMe97GoInxVx21WTiTO9rR0NPXjig/photo.jpg?sz=46\">";
 		// use wordwrap() if lines are longer than 70 characters
@@ -40,69 +40,88 @@ class Forecast_Model extends Model {
 		mail($to, $subject, $msg, $headers);
 die;
 */
-		//Tell PHPMailer to use SMTP
-		$mail->isSMTP();
+			$mail = new PHPMailer;
 
-		//Enable SMTP debugging
-		// SMTP::DEBUG_OFF = off (for production use)
-		// SMTP::DEBUG_CLIENT = client messages
-		// SMTP::DEBUG_SERVER = client and server messages
-		$mail->SMTPDebug = 2;
+			//Tell PHPMailer to use SMTP
+			$mail->isSMTP();
 
-		//Set the hostname of the mail server
-		$mail->Host = 'smtp.gmail.com';
-		// use
-		// $mail->Host = gethostbyname('smtp.gmail.com');
-		// if your network does not support SMTP over IPv6
+			//Enable SMTP debugging
+			// SMTP::DEBUG_OFF = off (for production use)
+			// SMTP::DEBUG_CLIENT = client messages
+			// SMTP::DEBUG_SERVER = client and server messages
+			$mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
-		//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-		$mail->Port = 587;
+			//Set the hostname of the mail server
+			$mail->Host = 'smtp.gmail.com';
+			// use
+			// $mail->Host = gethostbyname('smtp.gmail.com');
+			// if your network does not support SMTP over IPv6
 
-		//Set the encryption mechanism to use - STARTTLS or SMTPS
-		$mail->SMTPSecure = 'tls';
+			//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+			$mail->Port = 587;
 
-		//Whether to use SMTP authentication
-		$mail->SMTPAuth = true;
+			//Set the encryption mechanism to use - STARTTLS or SMTPS
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
-		//Username to use for SMTP authentication - use full email address for gmail
-		$mail->Username = 'eddythemeddy@gmail.com';
+			//Whether to use SMTP authentication
+			$mail->SMTPAuth = true;
 
-		//Password to use for SMTP authentication
-		$mail->Password = '247Ilovemomandad';
+			//Username to use for SMTP authentication - use full email address for gmail
+			$mail->Username = 'eddythemeddy@gmail.com';
 
-		//Set who the message is to be sent from
-		$mail->setFrom('eddythemeddy@gmail.com', 'Anubir Singh');
+			//Password to use for SMTP authentication
+			$mail->Password = '247Ilovemomandad';
 
-		//Set an alternative reply-to address
-		$mail->addReplyTo('eddythemeddy@gmail.com', 'Anubir Singh');
+			//Set who the message is to be sent from
+			$mail->setFrom('eddythemeddy@gmail.com', 'Anubir Singh');
 
-		//Set who the message is to be sent to
-		$mail->addAddress('eddythemeddy@gmail.com', 'Anubir Singh');
+			//Set an alternative reply-to address
+			$mail->addReplyTo('eddythemeddy@gmail.com', 'Anubir Singh');
 
-		//Set the subject line
-		$mail->Subject = $subject;
+			//Set who the message is to be sent to
+			$mail->addAddress($to, 'John Doe');
 
-		//Read an HTML message body from an external file, convert referenced images to embedded,
-		//convert HTML into a basic plain-text alternative body
-		$mail->msgHTML($msg);
+			//Set the subject line
+			$mail->Subject = $subject;
 
-		//Replace the plain text body with one created manually
-		$mail->AltBody = 'This is a plain-text message body';
+			//Read an HTML message body from an external file, convert referenced images to embedded,
+			//convert HTML into a basic plain-text alternative body
+			$mail->msgHTML('<!DOCTYPE html>
+			<html lang="en">
+			<head>
+			  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+			  <title>PHPMailer Test</title>
+			</head>
+			<body>
+			<div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
+			  <h1>This is a test of PHPMailer.</h1>
+			  <div align="center">
+				<a href="https://github.com/PHPMailer/PHPMailer/"><img src="images/phpmailer.png" height="90" width="340" alt="PHPMailer rocks"></a>
+			  </div>
+			  <p>This example uses <strong>HTML</strong>.</p>
+			  <p>ISO-8859-1 text: éèîüçÅñæß</p>
+			</div>
+			</body>
+			</html>');
 
-		//Attach an image file
-		// $mail->addAttachment('images/phpmailer_mini.png');
+			//Replace the plain text body with one created manually
+			$mail->AltBody = 'This is a plain-text message body';
 
-		//send the message, check for errors
-		if (!$mail->send()) {
-		    echo 'Mailer Error: '. $mail->ErrorInfo;
-		} else {
-		    echo 'Message sent!';
-		    //Section 2: IMAP
-		    //Uncomment these to save your message in the 'Sent Mail' folder.
-		    #if (save_mail($mail)) {
-		    #    echo "Message saved!";
-		    #}
-		}
+			//Attach an image file
+			$mail->addAttachment('images/phpmailer_mini.png');
+
+			//send the message, check for errors
+			if (!$mail->send()) {
+				echo 'Mailer Error: '. $mail->ErrorInfo;
+			} else {
+				echo 'Message sent!';
+				//Section 2: IMAP
+				//Uncomment these to save your message in the 'Sent Mail' folder.
+				#if (save_mail($mail)) {
+				#    echo "Message saved!";
+				#}
+			}
+
 	}
 
 	public function getDateArrayFromRange(string $dateRange) {
