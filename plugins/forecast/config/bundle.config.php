@@ -49,13 +49,11 @@ return [
                     'assets/js/list-all.js'
                 ]
             ],
-            'index2' => [
+            'mail' => [
                 'css' => [
                 ],
                 'js' => [
-                    'assets/js/interact.min.js',
-                    'assets/js/pages.calendar.js',
-                    'assets/js/calendar.js'
+                    'assets/js/email.js'
                 ]
             ],
             'calendar' => [
