@@ -20,7 +20,34 @@ class Forecast_Model extends Model {
 	}
 
 	public function sendMail() {
-		$mail = new PHPMailer;
+		$to =      $this->eqDb->escape($_POST['to']);
+		$subject = $this->eqDb->escape($_POST['subject']);
+		$message = $this->eqDb->escape($_POST['message']);
+		//$mail = new PHPMailer;
+		// the message
+
+		$msg = "First line of text\nSecond line of text<img src=\"https://lh3.googleusercontent.com/-e640AMqonrk/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJMe97GoInxVx21WTiTO9rR0NPXjig/photo.jpg?sz=46\">";
+
+		// use wordwrap() if lines are longer than 70 characters
+		$msg = wordwrap($msg,70);
+
+
+		$headers  = "Reply-To: The Sender <sender@sender.com>\r\n";
+
+		$headers .= "Return-Path: The Sender <sender@sender.com>\r\n";
+
+		$headers .= "From: The Sender <senter@sender.com>\r\n";
+
+
+		$headers .= "Organization: Sender Organization\r\n";
+
+		$headers .= "MIME-Version: 1.0\r\n";
+		$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+		$headers .= "X-Priority: 3\r\n";
+		$headers .= "X-Mailer: PHP". phpversion() ."\r\n";
+		// send email
+		mail($to, $subject, $msg, $headers);
+/*		die;
 
 		//Tell PHPMailer to use SMTP
 		$mail->isSMTP();
@@ -38,10 +65,10 @@ class Forecast_Model extends Model {
 		// if your network does not support SMTP over IPv6
 
 		//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-		$mail->Port = 465;
+		$mail->Port = 587;
 
 		//Set the encryption mechanism to use - STARTTLS or SMTPS
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		$mail->SMTPSecure = 'tls';
 
 		//Whether to use SMTP authentication
 		$mail->SMTPAuth = true;
@@ -84,7 +111,7 @@ class Forecast_Model extends Model {
 		    #if (save_mail($mail)) {
 		    #    echo "Message saved!";
 		    #}
-		}
+		}*/
 	}
 
 	public function getDateArrayFromRange(string $dateRange) {
