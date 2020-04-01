@@ -68,7 +68,7 @@ var LOGIN = (function(){
                 _btn.removeClass('disabled').removeAttr('disabled');
             },
             buttonOff: function() {
-                _btn.addClass('disabled').attr('disabled','disabled');  
+                _btn.addClass('disabled').attr('disabled','disabled').text('Sending Mail, please dont refresh');  
             },
             notify: function(type, message) {
                 _frm.prepend(
