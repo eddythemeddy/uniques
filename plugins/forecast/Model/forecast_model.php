@@ -102,7 +102,7 @@ die;
 		    #if (save_mail($mail)) {
 		    #    echo "Message saved!";
 		    #}
-		}*/
+		}
 	}
 
 	public function getDateArrayFromRange(string $dateRange) {
