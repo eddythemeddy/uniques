@@ -22,18 +22,20 @@ class Forecast extends Controller {
         if(!empty($_GET['oauth'])) {
             $this->gcal->oauth();
         }
+        
     }
 
     public function mail() {
 
-	if(isset($_GET['to'])) {
-	    $this->model->sendMail();
-	}
+        if(isset($_POST['to'])) {
+            $this->model->sendMail();
+            die;
+        }
 
-	$this->bodyClass = 'fixed-header';
-	$this->loadPage();
-	$this->render('mail');
-	$this->loadFooter();
+        $this->bodyClass = 'fixed-header';
+        $this->loadPage();
+        $this->render('mail');
+        $this->loadFooter();
     }
 
     public function index($dateRange = null) {
