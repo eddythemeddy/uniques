@@ -16,7 +16,7 @@ return array(
 	),
 	'db' => array(
 		'db_host' => 'localhost',
-		'db_name' => 'ruru',
+		'db_name' => 'uniques',
 		'db_user' => 'root',
 		'db_pass' => 'Mothugs123!',
 	)
