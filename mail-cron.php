@@ -11,4 +11,6 @@ $config = [
     'db_pass' => 'Mothugs123!',
 ];
 
+new Database($config);
+
 var_dump($eqDb);
