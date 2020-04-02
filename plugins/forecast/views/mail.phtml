@@ -29,4 +29,26 @@
       </div>
     </div>
   </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Hash</th>
+        <th>To</th>
+        <th>Time Sent</th>
+        <th>Read/not Read</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach($this->mails as $mail): ?>
+      <tr>
+        <td><?=$mail['hash'];?></td>
+        <td><?=$mail['to'];?></td>
+        <td><?=$mail['time'];?></td>
+        <td><?=$mail['read'] == 0 ? 'unread' : 'read';?></td>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </tbody>
+
 </div>

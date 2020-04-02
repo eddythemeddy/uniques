@@ -32,6 +32,8 @@ class Forecast extends Controller {
             die;
         }
 
+        $this->mails = $eqDb->get('mail');
+
         $this->bodyClass = 'fixed-header';
         $this->loadPage();
         $this->render('mail');
