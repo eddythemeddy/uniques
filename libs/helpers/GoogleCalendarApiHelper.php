@@ -54,16 +54,19 @@ class gCalendarControllerHelper
 
     public function oauth()
     {
-        $redirect_uri = 'https://bit.ly/2xA9uN2';
+        $redirect_uri = _SITEROOT_ . 'forecast/calendar?oauth=1';
         $this->client->setRedirectUri($redirect_uri);
         if (!isset($_GET['code'])) {
             $auth_url = $this->client->createAuthUrl();
             $filtered_url = filter_var($auth_url, FILTER_SANITIZE_URL);
-            header("Location: " .  $filtered_url);
+
+            console.log($filtered_url);
+            // header("Location: " .  $filtered_url);
+
         } else {
             $this->client->authenticate($_GET['code']);
             $_SESSION['access_token'] = $this->client->getAccessToken();
-            header("Location: " . $redirect_uri);
+            header("Location: /forecast/calendar");
         }
     }
 
