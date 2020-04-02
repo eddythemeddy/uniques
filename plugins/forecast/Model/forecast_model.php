@@ -37,7 +37,14 @@ class Forecast_Model extends Model {
 			$headers .= "X-Priority: 3\r\n";
 			$headers .= "X-Mailer: PHP". phpversion() ."\r\n";
 			// send email
-			mail($to, $subject, $msg, $headers);
+			$mail = mail($to, $subject, $msg, $headers);
+			if($mail) {
+				$this->eqDb->insert('mail', [
+					'time' => date('Y-m-d H:i:s'),
+					'to' => $to,
+					'read' => 0
+				]);
+			}
 			die;
 
 			$mail = new PHPMailer;
