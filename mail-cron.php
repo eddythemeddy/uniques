@@ -21,4 +21,6 @@ if(count($check)) {
     $update = $eqDb->update('mail',[
         'read' => 1
     ]);
+
+    var_dump($update);
 }
