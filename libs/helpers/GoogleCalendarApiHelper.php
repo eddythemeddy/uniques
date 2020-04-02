@@ -54,14 +54,14 @@ class gCalendarControllerHelper
 
     public function oauth()
     {
-        $redirect_uri = _SITEROOT_ . 'forecast/calendar?oauth=1';
+        $redirect_uri = 'http://localhost/forecast/calendar?oauth=1';
         $this->client->setRedirectUri($redirect_uri);
         if (!isset($_GET['code'])) {
             $auth_url = $this->client->createAuthUrl();
             $filtered_url = filter_var($auth_url, FILTER_SANITIZE_URL);
 
-            console.log($filtered_url);
-            // header("Location: " .  $filtered_url);
+//            co	nsole.log($filtered_url);
+           	header("Location: " .  $filtered_url);
 
         } else {
             $this->client->authenticate($_GET['code']);
