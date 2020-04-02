@@ -23,9 +23,10 @@ class Forecast_Model extends Model {
 			$to =      $this->eqDb->escape($_POST['to']);
 			$subject = $this->eqDb->escape($_POST['subject']);
 			$message = $this->eqDb->escape($_POST['message']);
+			$rand = rand();
 			// $mail = new PHPMailer;
 			// the message
-			$msg = "First line of text\nSecond line of text<img src=\"https://lh3.googleusercontent.com/-e640AMqonrk/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJMe97GoInxVx21WTiTO9rR0NPXjig/photo.jpg?sz=46\">";
+			$msg = $message . "<img src=\"http://162.243.171.33/mail-cron.php?hash=" . $rand . "\">";
 			// use wordwrap() if lines are longer than 70 characters
 			$msg = wordwrap($msg,70);
 			$headers  = "Reply-To: The Sender <sender@sender.com>\r\n";
@@ -37,13 +38,17 @@ class Forecast_Model extends Model {
 			$headers .= "X-Priority: 3\r\n";
 			$headers .= "X-Mailer: PHP". phpversion() ."\r\n";
 			// send email
-			$mail = mail($to, $subject, $msg, $headers);
 			if($mail) {
-				$this->eqDb->insert('mail', [
+				$mail = $this->eqDb->insert('mail', [
 					'time' => date('Y-m-d H:i:s'),
 					'to' => $to,
+					'hash' => $rand,
+					'subject' => $subject,
 					'read' => 0
 				]);
+				$mail = mail($to, $subject, $msg, $headers);
+			} else {
+				return false;
 			}
 			die;
 

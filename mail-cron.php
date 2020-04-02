@@ -14,8 +14,11 @@ $config = [
 new Database($config);
 
 $eq = $eqDb;
-
-$test = $eqDb->get('forecast',null,'*');
-
-var_dump($test);
-
+$eqDb->where('hash', $hash);
+$check = $eqDb->get('mail');
+if(count($check)) { 
+    $eqDb->where('hash', $hash);
+    $update = $eqDb->update('mail',[
+        'read' => 1
+    ]);
+}
