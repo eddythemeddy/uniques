@@ -13,6 +13,9 @@
         <option value="<?=$channel['id'];?>"><?=$channel['name'];?></option>
       <?php endforeach;?>
     </select>
+    <?php if(!empty($_SESSION['access_token'])): ?>
+    <a class="pull-right btn btn-sm">Logout Google</a>
+    <?php endif; ?>
   </div>
   <div id="calendar" class="padding-20 full-height bg-white"></div>
   <div class="cal-overlay"></div>
