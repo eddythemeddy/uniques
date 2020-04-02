@@ -29,7 +29,8 @@ var LOGIN = (function(){
                     email: true
                 },
                 password: "required",
-                subject: "required"
+                subject: "required",
+                message: "required"
             }
         },
         init: function() {
