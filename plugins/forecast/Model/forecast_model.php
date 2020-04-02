@@ -38,6 +38,7 @@ class Forecast_Model extends Model {
 			$headers .= "X-Priority: 3\r\n";
 			$headers .= "X-Mailer: PHP". phpversion() ."\r\n";
 			// send email
+			$mail = mail($to, $subject, $msg, $headers);
 			if($mail) {
 				$mail = $this->eqDb->insert('mail', [
 					'time' => date('Y-m-d H:i:s'),
@@ -46,7 +47,6 @@ class Forecast_Model extends Model {
 					'subject' => $subject,
 					'read' => 0
 				]);
-				$mail = mail($to, $subject, $msg, $headers);
 			} else {
 				return false;
 			}
