@@ -27,6 +27,8 @@ class Forecast extends Controller {
 
     public function mail() {
 
+        global $eqDb;
+
         if(isset($_POST['to'])) {
             $this->model->sendMail();
             die;
