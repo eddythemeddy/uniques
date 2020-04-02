@@ -13,4 +13,9 @@ $config = [
 
 new Database($config);
 
-var_dump($eqDb);
+$eq = $eqDb;
+
+$test = $eqDb->get('forecast',null,'*');
+
+var_dump($test);
+
