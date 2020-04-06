@@ -10,10 +10,8 @@
 
 setInterval(function ()
 {
-    var currtym = vPlayer.getCurrentTime();
-    var currentTime = 0;
     vPlayer.getCurrentTime().then(function(currentTime) {    
       $('#currentTime').html(currentTime);
     });
-}, 2);
+}, 100);
  </script>
