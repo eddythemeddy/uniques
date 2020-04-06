@@ -12,6 +12,14 @@ class Forecast extends Controller {
         }
     }
 
+    public function vimeo() {
+        
+        $this->bodyClass = 'fixed-header';
+        $this->loadPage();
+        $this->render('vimeo');
+        $this->loadFooter();
+    }
+
     public function calendarCallback(){
         
         $this->gcal = new gCalendarControllerHelper();

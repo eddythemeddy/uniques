@@ -46,7 +46,7 @@
         <td><?=$mail['hash'];?></td>
         <td><?=$mail['to'];?></td>
         <td><?=date("d M, Y", strtotime($mail['time']));?></td>
-        <td><?=$mail['read'] == 0 ? 'Not Opened' : 'Read';?></td>
+        <td><?=$mail['read'] == 0 ? 'Not Opened' : '  ';?></td>
       </tr>
       <?php endforeach; ?>
     </tbody>
