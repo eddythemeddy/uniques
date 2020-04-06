@@ -14,12 +14,16 @@
   <div class="sidebar-menu">
     <!-- BEGIN SIDEBAR MENU ITEMS-->
     <ul class="menu-items">
-      <li class="<?=($equrl[0] == 'forecast' ? 'active' : '');?>">
+      <li class="<?=($equrl[1] == '' ? 'active' : '');?>">
         <a href="/forecast/calendar">Calendar</a>
         <span class="icon-thumbnail fa fa-calendar" style="font-family: fontawesome;"></span>
       </li>
-      <li class="<?=($equrl[0] == 'mailer' ? 'active' : '');?>">
+      <li class="<?=($equrl[1] == 'mailer' ? 'active' : '');?>">
         <a href="/forecast/mail">Mailer</a>
+        <span class="icon-thumbnail fa fa-envelope" style="font-family: fontawesome;"></span>
+      </li>
+      <li class="<?=($equrl[1] == 'vimeo' ? 'active' : '');?>">
+        <a href="/forecast/vimeo">Mailer</a>
         <span class="icon-thumbnail fa fa-envelope" style="font-family: fontawesome;"></span>
       </li>
     </ul>
