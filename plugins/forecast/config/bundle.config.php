@@ -56,6 +56,14 @@ return [
                     'assets/js/email.js'
                 ]
             ],
+            'docx' => [
+                'css' => [
+                ],
+                'js' => [
+                    // '../../assets/public/js/require.js',
+                    // 'assets/js/cke.js'
+                ]
+            ],
             'calendar' => [
                 'css' => [
                     '../../assets/public/css/fullcalendar.min.css',

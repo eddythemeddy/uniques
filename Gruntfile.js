@@ -43,6 +43,7 @@ module.exports = function(grunt){
 					'node_modules/daterangepicker/daterangepicker.js',
 					'node_modules/select2/dist/js/select2.min.js',
 					'assets/public/js/switchery.min.js',
+					'node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js',
 					'assets/public/js/main.js'
 				],
 				dest: 'assets/dist/js/scouty.core.js'

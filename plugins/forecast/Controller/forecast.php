@@ -20,6 +20,14 @@ class Forecast extends Controller {
         $this->loadFooter();
     }
 
+    public function cke() {
+        
+        $this->bodyClass = 'fixed-header';
+        $this->loadPage();
+        $this->render('ckeditor');
+        $this->loadFooter();
+    }
+
     public function calendarCallback(){
         
         $this->gcal = new gCalendarControllerHelper();
@@ -31,6 +39,13 @@ class Forecast extends Controller {
             $this->gcal->oauth();
         }
         
+    }
+
+    public function docx() {
+        
+        $this->loadPage();
+        $this->render('docx');
+        $this->loadFooter();
     }
 
     public function mail() {

@@ -6,7 +6,8 @@
 
 return [
 	'global_res' => [
-		
+		'js' => [
+		],
 	],
 ];
 
