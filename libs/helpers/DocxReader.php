@@ -5,11 +5,7 @@ class Docx_reader {
     private $fileData = false;
     private $errors = array();
     private $styles = array();
-
-    public function __construct() {
-        
-    }
-
+    
     private function load($file) {
         if (file_exists($file)) {
             $zip = new ZipArchive();

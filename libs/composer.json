@@ -9,6 +9,7 @@
         "wildbit/postmark-php": "^2.6",
         "embedly/embedly-php": "^0.5.6",
         "phpmailer/phpmailer": "^6.1",
-        "nesbot/carbon": "^2.32"
+        "nesbot/carbon": "^2.32",
+        "phpoffice/phpword": "^0.17.0"
     }
 }
