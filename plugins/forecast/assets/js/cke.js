@@ -9,7 +9,11 @@
                     document: doc
                 },
                 success: (d) => {
-                    $('.inner-content').html(d)
+                    $('.inner-content #content').html(d)
+                    $('.inner-content .btn')
+                        .removeClass('hidden')
+                        .text('Open ' + doc)
+                        .attr('href', '/' + doc)
                 },
                 error: () => {
                 }
