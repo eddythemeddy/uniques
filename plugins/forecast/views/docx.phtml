@@ -1,46 +1,37 @@
-<style>
-#container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.viewer {
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-h1 {
-  text-decoration: underline;
-}
-</style>
-<div id="container">
-  <div class="viewer pdf">
-    <h1>.pdf</h1>
-    <iframe src="//docs.google.com/viewer?embedded=true&url=http://www.pdf995.com/samples/pdf.pdf" width="600" height="780" scrolling="no" style="border: none;">
-    </iframe>
-  </div>
-  
-  <div class="viewer doc">
-    <h1>.doc</h1>
-    <iframe src="//docs.google.com/viewer?embedded=true&url=http://www.snee.com/xml/xslt/sample.doc" width="600" height="780" scrolling="no" style="border: none;">
-    </iframe>
-  </div>
-
-  <div class="viewer docx">
-    <h1>.docx</h1>
-    <iframe src="//docs.google.com/viewer?embedded=true&url=http://calibre-ebook.com/downloads/demos/demo.docx" width="600" height="780" scrolling="no" style="border: none;">
-    </iframe>
-  </div>
-
-  <div class="viewer xls">
-    <h1>.xls</h1>
-    <iframe src="//docs.google.com/viewer?embedded=true&url=https://www.columbia.edu/~dj114/excel-examples.xls" width="600" height="780" scrolling="no" style="border: none;">
-    </iframe>
-  </div>
-
-  <div class="viewer xlsx">
-    <h1>.xlsx</h1>
-    <iframe src="//docs.google.com/viewer?embedded=true&url=http://dev-builds.libreoffice.org/tmp/test.xlsx" width="600" height="780" scrolling="no" style="border: none;">
-    </iframe>
-  </div>
+<nav class="secondary-sidebar" style="margin-top:-60px;">
+	<ul class="main-menu">
+		<li>
+			<a data-document="file-sample_1MB.doc">
+                <span class="title">Doc 1</span> 
+            </a>
+		</li>
+		<li>
+			<a data-document="file-sample_1MB.docx">
+                <span class="title">Doc 2</span> 
+            </a>
+		</li>
+		<li>
+			<a data-document="file-sample_100kB.doc">
+                <span class="title">Doc 3</span> 
+            </a>
+		</li>
+		<li>
+			<a data-document="file-sample_100kB.docx">
+                <span class="title">Doc 4</span> 
+            </a>
+		</li>
+		<li>
+			<a data-document="file-sample_500kB.doc">
+                <span class="title">Doc 5</span> 
+            </a>
+		</li>
+		<li>
+			<a data-document="file-sample_500kB.docx">
+                <span class="title">Doc 6</span> 
+            </a>
+		</li>
+	</ul>
+</nav>
+<div class="inner-content full-height padding-20">
+    <h4 class="text-center">Please pick a document on the left</h4>
+</div>

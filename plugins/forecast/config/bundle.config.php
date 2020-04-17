@@ -61,7 +61,7 @@ return [
                 ],
                 'js' => [
                     // '../../assets/public/js/require.js',
-                    // 'assets/js/cke.js'
+                    'assets/js/cke.js'
                 ]
             ],
             'calendar' => [

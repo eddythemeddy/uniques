@@ -42,6 +42,20 @@ class Forecast extends Controller {
     }
 
     public function docx() {
+        if(!empty($_GET['document'])) {
+            $doc = new Docx_reader();
+            $doc->setFile($_GET['document']);
+
+            if(!$doc->get_errors()) {
+                $this->html = $doc->to_html();
+                $plain_text = $doc->to_plain_text();
+            } else {
+                $this->html = implode(', ',$doc->get_errors());
+            }
+
+            echo $this->html;
+            exit;
+        }
         
         $this->loadPage();
         $this->render('docx');
