@@ -18,7 +18,7 @@
     "highcharts": "^8.0.4",
     "i": "^0.3.6",
     "intro.js": "^2.9.3",
-    "jquery": "^3.1.1",
+    "jquery": "^3.5.0",
     "jquery-confirm": "^3.3.4",
     "jquery-easing": "0.0.1",
     "jquery-form": "^4.0.1",
