@@ -25,7 +25,7 @@
     "jquery-validation": "^1.16.0",
     "jquery.scrollbar": "^0.2.11",
     "load-grunt-tasks": "^5.1.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mammoth": "^1.4.9",
     "moment": "^2.24.0",
     "npm": "^6.8.0",
