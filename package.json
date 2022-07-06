@@ -22,7 +22,7 @@
     "jquery-confirm": "^3.3.4",
     "jquery-easing": "0.0.1",
     "jquery-form": "^4.0.1",
-    "jquery-validation": "^1.16.0",
+    "jquery-validation": "^1.19.5",
     "jquery.scrollbar": "^0.2.11",
     "load-grunt-tasks": "^5.1.0",
     "lodash": "^4.17.15",
