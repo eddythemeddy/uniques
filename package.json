@@ -26,7 +26,7 @@
     "jquery.scrollbar": "^0.2.11",
     "load-grunt-tasks": "^5.1.0",
     "lodash": "^4.17.15",
-    "mammoth": "^1.4.9",
+    "mammoth": "^1.5.1",
     "moment": "^2.24.0",
     "npm": "^6.8.0",
     "simplebar": "^4.3.0-alpha.0",
